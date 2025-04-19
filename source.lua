@@ -71,6 +71,29 @@ Toggle:OnChanged(function(Value)
     end
 end)
 
+local Toggle = Tabs.Main:CreateToggle("Cast", {Title = "Auto Cast", Default = false })
+
+local autoCast = false
+
+Toggle:OnChanged(function(Value)
+    autoCast = Value
+
+    if autoCast then
+       task.spawn(function()
+           pcall(function()
+               while autoCast do
+                  local Rod = findrod()
+                  if Rod:FindFirstChild("values") and Rod.values:FindFirstChild("casted") then
+                     local casted = Rod.values.casted
+                     if casted.Value == false then
+                        Rod.events.cast:FireServer(100, 1)
+                     end
+                  end
+               end
+           end)
+       end)
+    end
+end)
 
 InterfaceManager:SetFolder("FluentScriptHub")
 SaveManager:SetFolder("FluentScriptHub/specific-game")
