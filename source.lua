@@ -55,8 +55,11 @@ end
 -- equip rod
 local Toggle = Tabs.Main:CreateToggle("EquipRod", {Title = "Auto Equip Rod", Default = false })
 
+local EquipRod = false
+
 Toggle:OnChanged(function(Value)
-    while Value do
+    EquipRod = Value
+    while EquipRod do
         local Rod = findrod()
         equipitem(Rod)
         task.wait(0.5)
