@@ -84,8 +84,8 @@ Toggle:OnChanged(function(Value)
              pcall(function()
                   local Rod = findrod()
                   if Rod:FindFirstChild("events") and v.events:FindFirstChild("cast") then
-                     if v:FindFirstChild("values") and v.values:FindFirstChild("casted") and v.values.casted.Value == false then
-                        v.events.cast:FireServer(100, 1)
+                     if Rod:FindFirstChild("values") and v.values:FindFirstChild("casted") and v.values.casted.Value == false then
+                        Rod.events.cast:FireServer(100, 1)
                      end
                   end
               end)
