@@ -36,11 +36,27 @@ local Tabs = {
 
 local Options = Library.Options
 
+equipitem = function(v)
+if LocalPlayer.Backpack:FindFirstChild(v) then
+    local a = LocalPlayer.Backpack:FindFirstChild(v)
+        Humanoid:EquipTool(a)
+    end
+end
+
+for i, v in pairs(LocalPlayer.BackPack:GetChildren()) do
+   if v:IsA("Tool") and v.Name:lower():find("rod") then
+      local Rod = v
+   end
+end
+
 -- equip rod
 local Toggle = Tabs.Main:CreateToggle("EquipRod", {Title = "Auto Equip Rod", Default = false })
 
 Toggle:OnChanged(function(Value)
-    print(Value)
+    while Value do
+       equipitem(Rod)
+       task.wait(0.5)
+    end
 end)
 
 
