@@ -83,17 +83,20 @@ Toggle:OnChanged(function(Value)
            pcall(function()
                while autoCast do
                   local Rod = findrod()
-                  if Rod:FindFirstChild("values") and Rod.values:FindFirstChild("casted") then
+                  if Rod:FindFirstChild("values") and Rod.values:FindFirstChild("casted") and Rod:FindFirstChild("events") and Rod.events:FindFirstChild("cast") then
                      local casted = Rod.values.casted
                      if casted.Value == false then
                         Rod.events.cast:FireServer(100, 1)
                      end
                   end
+                  task.wait(0.5)
                end
            end)
        end)
     end
 end)
+
+
 
 InterfaceManager:SetFolder("FluentScriptHub")
 SaveManager:SetFolder("FluentScriptHub/specific-game")
