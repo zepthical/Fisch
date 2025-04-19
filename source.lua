@@ -43,9 +43,11 @@ if LocalPlayer.Backpack:FindFirstChild(v) then
     end
 end
 
-for i, v in pairs(LocalPlayer.BackPack:GetChildren()) do
-   if v:IsA("Tool") and v.Name:lower():find("rod") then
-      local Rod = v
+local function findrod()
+   for i, v in pairs(LocalPlayer.BackPack:GetChildren()) do
+      if v:IsA("Tool") and v.Name:lower():find("rod") then
+         print("rod founded")
+      end
    end
 end
 
@@ -54,6 +56,7 @@ local Toggle = Tabs.Main:CreateToggle("EquipRod", {Title = "Auto Equip Rod", Def
 
 Toggle:OnChanged(function(Value)
     while Value do
+       local Rod = findRod()
        equipitem(Rod)
        task.wait(0.5)
     end
