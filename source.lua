@@ -55,14 +55,19 @@ end
 -- equip rod
 local Toggle = Tabs.Main:CreateToggle("EquipRod", {Title = "Auto Equip Rod", Default = false })
 
-local EquipRod = false
+local autoEquip = false
 
 Toggle:OnChanged(function(Value)
-    EquipRod = Value
-    while EquipRod do
-        local Rod = findrod()
-        equipitem(Rod)
-        task.wait(0.5)
+    autoEquip = Value -- update the flag when toggle is changed
+
+    if autoEquip then
+        task.spawn(function()
+            while autoEquip do
+                local Rod = findrod()
+                equipitem(Rod)
+                task.wait(0.5)
+            end
+        end)
     end
 end)
 
