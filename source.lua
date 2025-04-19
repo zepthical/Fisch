@@ -36,19 +36,20 @@ local Tabs = {
 
 local Options = Library.Options
 
-equipitem = function(v)
-if LocalPlayer.Backpack:FindFirstChild(v) then
-    local a = LocalPlayer.Backpack:FindFirstChild(v)
-        Humanoid:EquipTool(a)
+local function equipitem(tool)
+    if tool and tool:IsA("Tool") then
+        Humanoid:EquipTool(tool)
     end
 end
 
 local function findrod()
-   for i, v in pairs(LocalPlayer.BackPack:GetChildren()) do
-      if v:IsA("Tool") and v.Name:lower():find("rod") then
-         print("rod founded")
-      end
-   end
+    for _, v in pairs(LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") and v.Name:lower():find("rod") then
+            print("Rod found:", v.Name)
+            return v
+        end
+    end
+    return nil
 end
 
 -- equip rod
@@ -56,9 +57,9 @@ local Toggle = Tabs.Main:CreateToggle("EquipRod", {Title = "Auto Equip Rod", Def
 
 Toggle:OnChanged(function(Value)
     while Value do
-       local Rod = findRod()
-       equipitem(Rod)
-       task.wait(0.5)
+        local Rod = findrod()
+        equipitem(Rod)
+        task.wait(0.5)
     end
 end)
 
