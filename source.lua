@@ -81,15 +81,9 @@ Toggle:OnChanged(function(Value)
     if autoCast then
       task.spawn(function()
           while autoCast do
-             pcall(function()
-                  local Rod = findrod()
-                  if Rod:FindFirstChild("events") and v.events:FindFirstChild("cast") then
-                     if Rod:FindFirstChild("values") and v.values:FindFirstChild("casted") and v.values.casted.Value == false then
-                        Rod.events.cast:FireServer(100, 1)
-                     end
-                  end
-              end)
+              local Rod = findrod()
               task.wait(0.5)
+              Rod.events.cast:FireServer(100,1)
            end
        end)
     end
