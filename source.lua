@@ -103,7 +103,7 @@ do
 	end
 end
 
-local mainFolder = "Yenix Hub"
+local mainFolder = "Zepthic"
 local path = mainFolder.."/Fisch"
 local ConfigName = path.."/"..Client.Name.."-config.json"
 
